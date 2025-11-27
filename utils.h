@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 #pragma once
+=======
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
 #include <iostream>
 #include <string>
 #include <limits>
@@ -168,4 +171,8 @@ namespace SearchUtils {
             return idlePercent >= minPercent && idlePercent <= maxPercent;
             });
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf

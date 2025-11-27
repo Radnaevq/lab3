@@ -1,5 +1,8 @@
 #include "PipeManager.h"
+<<<<<<< HEAD
 #include"utils.h"
+=======
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
 #include <fstream>
 #include <iostream>
 
@@ -14,6 +17,7 @@ Pipe& PipeManager::createPipe() {
     return pipe;
 }
 
+<<<<<<< HEAD
 Pipe& PipeManager::createPipeWithoutDiameter() {
     int newId = Pipe::getNextId();
     Pipe& pipe = pipes[newId];
@@ -35,6 +39,8 @@ Pipe& PipeManager::createPipeWithoutDiameter() {
     return pipe;
 }
 
+=======
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
 bool PipeManager::deletePipe(int id) {
     return pipes.erase(id) > 0;
 }
@@ -100,15 +106,21 @@ void PipeManager::loadFromFile(const std::string& filename) {
     }
 
     std::string line;
+<<<<<<< HEAD
     int maxId = 0;
+=======
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
     while (getline(file, line)) {
         if (line == "PIPE") {
             Pipe pipe;
             file >> pipe;
             pipes[pipe.getId()] = pipe;
+<<<<<<< HEAD
             if (pipe.getId() > maxId) {
                 maxId = pipe.getId();
             }
+=======
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
         }
         else if (line == "CS") {
             for (int i = 0; i < 5; ++i) {
@@ -116,12 +128,15 @@ void PipeManager::loadFromFile(const std::string& filename) {
             }
         }
     }
+<<<<<<< HEAD
     if (maxId > 0) {
         Pipe::resetIdCounter();
         for (int i = 1; i <= maxId; i++) {
         }
         Pipe::nextId = maxId + 1;
     }
+=======
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
     file.close();
     std::cout << "Pipes loaded from " << filename << std::endl;
 }

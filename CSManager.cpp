@@ -78,15 +78,21 @@ void CSManager::loadFromFile(const std::string& filename) {
     }
 
     std::string line;
+<<<<<<< HEAD
     int maxId = 0;
+=======
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
     while (getline(file, line)) {
         if (line == "CS") {
             CS cs;
             file >> cs;
             stations[cs.getId()] = cs;
+<<<<<<< HEAD
             if (cs.getId() > maxId) {
                 maxId = cs.getId();
             }
+=======
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
         }
         else if (line == "PIPE") {
             for (int i = 0; i < 5; ++i) {
@@ -94,9 +100,15 @@ void CSManager::loadFromFile(const std::string& filename) {
             }
         }
     }
+<<<<<<< HEAD
     if (maxId > 0) {
         CS::nextId = maxId + 1;
     }
     file.close();
     std::cout << "Compressor stations loaded from " << filename << std::endl;
 }
+=======
+    file.close();
+    std::cout << "Compressor stations loaded from " << filename << std::endl;
+}
+>>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf

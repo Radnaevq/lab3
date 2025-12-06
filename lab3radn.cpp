@@ -17,7 +17,7 @@ std::vector<int> foundStations;
 void Menu(PipeManager& pipeManager, CSManager& csManager, Network& network) {
     while (1)
     {
-        cout << "Choose an action\n1. Add pipe\n2. Add compressor station\n3. View all objects\n4. Edit pipe\n5. Edit compressor station\n6. Search pipes\n7. Search compressor stations\n8. Batch edit pipes\n9. Delete pipe\n10. Delete compressor station\n11. Save\n12. Load\n13. View network\n14. Connect CS with pipe\n15. Disconnect pipe\n16. Disconnect CS\n17. Topological sort\n0. Exit\n";
+        cout << "Choose an action\n1. Add pipe\n2. Add compressor station\n3. View all objects\n4. Edit pipe\n5. Edit compressor station\n6. Search pipes\n7. Search compressor stations\n8. Batch edit pipes\n9. Delete pipe\n10. Delete compressor station\n11. Save\n12. Load\n13. View network\n14. Connect CS with pipe\n15. Disconnect pipe\n16. Disconnect CS\n17. Topological sort\n18. Calculate maximum flow\n19. Find shortest path\n0. Exit\n";
         string input;
         getline(cin, input);
         logInput(input);
@@ -643,6 +643,98 @@ void Menu(PipeManager& pipeManager, CSManager& csManager, Network& network) {
                 }
                 cout << endl;
             }
+            break;
+        }
+        case 18: { // Расчет максимального потока
+            if (network.isEmpty()) {
+                cout << "Network is empty!" << endl;
+                break;
+            }
+
+            cout << "=== CALCULATE MAXIMUM FLOW ===" << endl;
+            cout << "Available CS in network:" << endl;
+            network.displayNetwork();
+
+            auto csIds = network.getConnectedCSIds();
+            cout << "\nCS IDs in network: ";
+            for (int id : csIds) {
+                cout << id << " ";
+            }
+            cout << endl;
+
+            int sourceId, sinkId;
+            inputNumber(sourceId, "Enter source CS ID: ");
+
+            // Проверяем, существует ли source
+            bool sourceExists = false;
+            for (int id : csIds) {
+                if (id == sourceId) {
+                    sourceExists = true;
+                    break;
+                }
+            }
+
+            if (!sourceExists) {
+                cout << "Error: Source CS " << sourceId << " not found in network!" << endl;
+                break;
+            }
+
+            inputNumber(sinkId, "Enter sink CS ID: ");
+
+            // Проверяем, существует ли sink
+            bool sinkExists = false;
+            for (int id : csIds) {
+                if (id == sinkId) {
+                    sinkExists = true;
+                    break;
+                }
+            }
+
+            if (!sinkExists) {
+                cout << "Error: Sink CS " << sinkId << " not found in network!" << endl;
+                break;
+            }
+
+            if (sourceId == sinkId) {
+                cout << "Error: Source and sink cannot be the same!" << endl;
+                break;
+            }
+
+            cout << "\nCalculating maximum flow from CS " << sourceId
+                << " to CS " << sinkId << "..." << endl;
+
+            double maxFlow = network.findMaxFlow(sourceId, sinkId, pipeManager);
+
+            cout << "\nPress Enter to continue...";
+            cin.ignore();
+
+            break;
+        }
+
+        case 19: { // Расчет кратчайшего пути
+            if (network.isEmpty()) {
+                cout << "Network is empty!" << endl;
+                break;
+            }
+
+            cout << "Available CS in network:" << endl;
+            auto csIds = network.getConnectedCSIds();
+            for (int id : csIds) {
+                cout << "CS " << id << endl;
+            }
+
+            cout << "\nCurrent network connections:" << endl;
+            network.displayNetwork();
+
+            int startId, endId;
+            inputNumber(startId, "\nEnter start CS ID: ");
+            inputNumber(endId, "Enter end CS ID: ");
+
+            bool useHeuristic;
+            inputInRange(useHeuristic, "Use heuristic (A*)? (1 - yes, 0 - no, Dijkstra): ", false, true);
+
+            auto path = network.findShortestPath(startId, endId, pipeManager, useHeuristic);
+
             break;
         }
 

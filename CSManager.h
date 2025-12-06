@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 #pragma once
-=======
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
 #include "CS.h"
 #include <unordered_map>
 #include <vector>

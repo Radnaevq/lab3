@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 #pragma once
-=======
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
-#include "Pipe.h"
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include "Pipe.h"
 
 class PipeManager {
 private:
@@ -14,10 +11,7 @@ private:
 public:
     void addPipe(const Pipe& pipe);
     Pipe& createPipe();
-<<<<<<< HEAD
-    Pipe& createPipeWithoutDiameter();
-=======
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
+    Pipe& createPipeWithoutDiameter(); // Оставлено из ветки HEAD
 
     bool deletePipe(int id);
     void deletePipes(const std::vector<int>& ids);

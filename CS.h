@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 #pragma once
-=======
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
 #include <string>
 #include <iostream>
 
@@ -39,18 +36,11 @@ public:
     bool isEmpty() const { return name.empty(); }
     void displayInfo() const;
 
-<<<<<<< HEAD
     friend class CSManager;
-=======
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
     friend std::ostream& operator<<(std::ostream& out, const CS& cs);
     friend std::istream& operator>>(std::istream& in, CS& cs);
     friend std::ofstream& operator<<(std::ofstream& out, const CS& cs);
     friend std::ifstream& operator>>(std::ifstream& in, CS& cs);
 
     static void resetIdCounter() { nextId = 1; }
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf

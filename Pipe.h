@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 #pragma once
-=======
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
 #include <string>
 #include <iostream>
 
@@ -13,6 +10,12 @@ private:
     double length;
     int diameter;
     bool inRepair;
+    double getWeight() const {
+        if (inRepair) {
+            return std::numeric_limits<double>::max();
+        }
+        return length;
+    }
 
 public:
     Pipe();
@@ -34,14 +37,12 @@ public:
     bool isEmpty() const { return name.empty(); }
     void displayInfo() const;
 
-<<<<<<< HEAD
     friend class PipeManager;
-=======
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
     friend std::ostream& operator<<(std::ostream& out, const Pipe& pipe);
     friend std::istream& operator>>(std::istream& in, Pipe& pipe);
     friend std::ofstream& operator<<(std::ofstream& out, const Pipe& pipe);
     friend std::ifstream& operator>>(std::ifstream& in, Pipe& pipe);
 
     static void resetIdCounter() { nextId = 1; }
+
 };

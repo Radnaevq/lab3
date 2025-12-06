@@ -109,8 +109,4 @@ std::ifstream& operator>>(std::ifstream& in, CS& cs) {
     in >> cs.workshop >> cs.w_work >> cs.class_cs;
     in.ignore();
     return in;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf

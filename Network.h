@@ -1,5 +1,10 @@
 #pragma once
 #include <unordered_map>
+#include <functional>
+#include <vector>
+#include <queue>
+#include <limits>
+#include <cmath>
 #include "Pipe.h"
 #include "CS.h"
 #include "PipeManager.h"
@@ -7,7 +12,7 @@
 
 class Network {
 private:
-    std::unordered_map<int, std::unordered_map<int, int>> graph;
+    std::unordered_map<int, std::unordered_map<int, std::pair<int, double>>> graph;
     std::unordered_map<int, std::unordered_map<int, bool>> freePipesByDiameter;
 
 public:
@@ -26,9 +31,22 @@ public:
     bool hasCSConnections(int csId) const;
     bool hasPipeConnections(int pipeId) const;
 
+    double calculatePipeCapacity(const Pipe& pipe) const;
+    double findMaxFlow(int sourceId, int sinkId, PipeManager& pipeManager) const;
+    std::vector<int> findShortestPath(int startId, int endId, PipeManager& pipeManager, bool useHeuristic = false) const;
+    std::vector<int> getConnectedCSIds() const;
+    void printNetworkForFlow() const;
+
 private:
     void topologicalSortUtil(int v, std::unordered_map<int, bool>& visited,
         std::unordered_map<int, int>& result, int& index) const;
     bool hasCycleUtil(int v, std::unordered_map<int, bool>& visited,
         std::unordered_map<int, bool>& recStack) const;
+
+    bool bfsForMaxFlow(int source, int sink,
+        std::unordered_map<int, int>& parent,
+        const std::unordered_map<int, std::unordered_map<int, double>>& capacity) const;
+    std::vector<int> aStarSearch(int start, int goal,
+        const std::unordered_map<int, std::unordered_map<int, double>>& weight) const;
+    double heuristicEstimate(int current, int goal) const;
 };

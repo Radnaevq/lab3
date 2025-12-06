@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 #pragma once
-=======
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
 #include <iostream>
 #include <string>
 #include <limits>
@@ -11,8 +8,9 @@
 #include <fstream>
 #include <sstream>
 #include "Pipe.h"
-#include "CS.h"  
+#include "CS.h" 
 
+// Класс для логирования ввода
 class InputLogger {
 public:
     InputLogger() {
@@ -41,6 +39,7 @@ inline void logInput(const std::string& input) {
     InputLogger::getInstance().log(input);
 }
 
+// Шаблон для ввода чисел
 template<typename T>
 inline bool inputNumber(T& variable, const std::string& prompt, bool positiveOnly = false) {
     while (true) {
@@ -71,6 +70,7 @@ inline bool inputNumber(T& variable, const std::string& prompt, bool positiveOnl
     }
 }
 
+// Шаблон для ввода чисел в диапазоне (исправлена опечатка &a)
 template<typename T>
 inline bool inputInRange(T& variable, const std::string& prompt, T minValue, T maxValue) {
     while (true) {
@@ -102,6 +102,7 @@ inline bool inputInRange(T& variable, const std::string& prompt, T minValue, T m
     }
 }
 
+// Специализация для bool
 template<>
 inline bool inputInRange<bool>(bool& variable, const std::string& prompt, bool minValue, bool maxValue) {
     while (true) {
@@ -171,8 +172,4 @@ namespace SearchUtils {
             return idlePercent >= minPercent && idlePercent <= maxPercent;
             });
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 464a28a2023f0fdfefb81102fc68bf378db427cf
